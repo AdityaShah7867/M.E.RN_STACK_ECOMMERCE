@@ -7,7 +7,7 @@ const verifyToken = async (req, res, next) => {
     try {
         const token = req.header("Authorization")?.replace("Bearer ", "")
 
-        console.log(token)
+        // console.log(token)
         if (!token) {
             res.status(401).json({ message: "token is required" })
         }

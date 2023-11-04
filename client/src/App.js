@@ -9,6 +9,7 @@ import Addp from '../src/Pages/Addp';
 import Land from '../src/Pages/Land';
 import Navbar from '../src/components/Navbar/Navbar'
 import Cart from './Pages/Cart';
+import Admin from './Pages/Admin/Admin';
 
 
 const App = () => {
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/home" element={<Home />} />
           <Route path="/addp" element={<Addp />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} />
 
         </Route>
 

@@ -25,12 +25,12 @@ const Login = () => {
           password
         });
     
-        const { message, Token } = response.data;
+        const { message, token } = response.data;
     
         if (response.status === 200) {
           navigate('/home');
           toast.success('Login successful!');
-          localStorage.setItem('token', Token);
+          localStorage.setItem('token', token);
           
  
         } else {

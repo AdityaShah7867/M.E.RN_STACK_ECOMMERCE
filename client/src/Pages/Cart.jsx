@@ -28,7 +28,7 @@ const Cart = () => {
     <div>
       
       {products.map((product) => (
-            <li key={product.product.name} className="bg-white shadow-lg rounded-lg">
+            <li key={product._id} className="bg-white shadow-lg rounded-lg">
               <div className="p-6">
               <h2 className="text-xl font-semibold mb-2">{product.product.name}</h2>
                 <h2 className="text-xl font-semibold mb-2">{product.product.price}</h2>

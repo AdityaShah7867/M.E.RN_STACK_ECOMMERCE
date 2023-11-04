@@ -40,23 +40,11 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/v1/user/isAdmin`)
-      .then((response) => {
-        if (response.data.isAdmin) {
-          toast.success("admin");
-        } else {
-          toast.error("not admin");
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching admin status:", error);
-      });
 
     axios
       .get(`${baseURL}/v1/product/getP`)
       .then((response) => {
-        setProducts(response.data);
+        setProducts(response.data); 
       })
       .catch((error) => {
         console.error("Error fetching data:", error);

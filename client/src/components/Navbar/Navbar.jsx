@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { NavLink, useNavigate } from 'react-router-dom'
-
+import { baseURL } from "../../Util/constant";
+import axios from 'axios';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -13,6 +14,21 @@ const Navbar = () => {
     navigate("/login");
     localStorage.removeItem("token");
   };
+
+  const [admin,setAdmin] = useState({});
+
+
+    useEffect(()=>{
+
+        axios.get(`${baseURL}/v1/auth/getLoggedinUser`,{
+            headers : {
+              Authorization: `Bearer ${localStorage.getItem('token')}`
+            }})
+            .then((res)=>{
+                setAdmin(res.data.user)
+                console.log(res.data.user)
+            }).catch((error)=>console.log(error))
+    } ,[] )
 
   return (
     <div>
@@ -77,7 +93,15 @@ const Navbar = () => {
             >
               Cart
             </a>
-            
+           {admin.isAdmin !== false?
+
+            <a
+              href="./admin"
+              className="block ml-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white"
+            >
+              Admin
+            </a>
+          :null}
           </div>
         )}
           {localStorage.getItem("token") ? (

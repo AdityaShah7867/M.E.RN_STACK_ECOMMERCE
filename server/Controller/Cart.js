@@ -12,7 +12,9 @@ exports.fetchCartByUser = async (req, res) => {
 };
 
 exports.addToCart = async (req, res) => {
+
   const {id} = req.user;
+  console.log(req.user)
   const {pid}=req.params;
   const {quantity} = req.body;
   const cart = new Cart({

@@ -1,40 +1,72 @@
 const User = require("../Models/User")
 const jwt = require("jsonwebtoken")
+const bcrypt = require('bcrypt')
 
-const register = async (req,res)=>{
-    const {email} = req.body 
-    const user = await User.findOne(
-        {email}
-    )
-    if(user){
-        res.status(401).json("User already exists")
-        return
+const register = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        const existingUser = await User.findOne({
+            email: email
+        })
+
+        if (existingUser) {
+            res.status(401).json({ message: "user already exists" })
+            return
+        }
+
+        const hashedpassword = await bcrypt.hash(password, 10)
+
+        if (!email || !password) {
+            res.status(400).json({ message: "fill all the details" })
+            return
+        }
+
+        const newUser = await User.create({
+            email,
+            password: hashedpassword
+        })
+        res.status(201).json({ message: "user created succesfuly", newUser: newUser })
+    } catch (error) {
+        res.status(501).json({ error: error })
     }
-    const newUser = await User.create(
-        req.body
-    ) 
-    res.status(201).json("Registration successful")
 }
+
 
 const login = async (req, res) => {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    try {
+        const { email, password } = req.body;
+        const user = await User.findOne({
+            email: email
+        })
 
-    if (!user) {
-        return res.status(401).json("User Doesn't Exist!");
-    }
+        if (!user) {
+            res.status(401).json({ message: "user does not exist" })
+            return
+        }
 
-    if (password === user.password) {
-        const Token = jwt.sign({ id:user._id, email:user.email, password:user.password }, process.env.JWT, { expiresIn: '1d' });
+        const comparepassword = await bcrypt.compare(password, user.password)
 
-        // Check if the user is an admin
-        const isAdmin = user.isAdmin;
+        if (comparepassword) {
+            const token = jwt.sign({
+                id:user.id,
+                email:user.email
+                
+            }, process.env.JWT)
 
-        return res.status(200).json({ message: "Congratulations", Token, isAdmin });
-    } else {
-        return res.status(401).json("Email and Password Don't Match!");
+            res.status(200).json({ message: "user lpgged in", user: user, token: token })
+        }
+        else {
+            res.status(401).json({ message: "incorrect password" })
+        }
+
+
+    } catch (error) {
+        console.log(error)
+        res.status(501).json({ error: error })
     }
 }
+
 
 const getLoggedinUser = async (req, res) => {
     try {
@@ -42,7 +74,7 @@ const getLoggedinUser = async (req, res) => {
         const user = req.user;
         console.log(user)
 
-        res.status(200).json({ message: user })
+        res.status(200).json({ user: user })
     } catch (error) {
 
         res.status(501).json({ message: error })
