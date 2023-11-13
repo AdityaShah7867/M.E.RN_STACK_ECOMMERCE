@@ -67,7 +67,7 @@ const Home = () => {
                 </p>
                 {product.file && (
                   <img
-                  src={`http://localhost:4000/uploads/${product.file}`} // Assuming the file path is relative to your baseURL
+                  src={`https://ecomm-n3fj.onrender.com/uploads/${product.file}`} // Assuming the file path is relative to your baseURL
                   alt={product.name}
                   className="w-full h-48 object-cover mt-4"
                 />
