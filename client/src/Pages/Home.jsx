@@ -72,17 +72,17 @@ const Home = () => {
                   className="w-full h-48 object-cover mt-4"
                 />
                 )}
-                <button
+                {/* <button
                   onClick={() => handleDelete(product._id)}
                   className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
                 >
                   Delete
-                </button>
+                </button> */}
                 <button
                   onClick={() => handleCart(product._id)}
                   className="bg-blue-500 ml-2 text-white px-4 py-2 mt-4 rounded"
                 >
-                  Add 
+                  Proceed To Buy
                 </button>
               </div>
             </li>

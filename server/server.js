@@ -15,7 +15,7 @@ app.use(express.json())
 const PORT = process.env.PORT || 4000;
 
 mongoose
-    .connect(process.env.MONGO_URI)
+    .connect('mongodb+srv://192105adityashah:Aditya@cluster0.b8h2qxc.mongodb.net/?retryWrites=true&w=majority')
     .then(() => console.log('Mongo Connected ...'))
     .catch((err)=> console.log(err));
 
