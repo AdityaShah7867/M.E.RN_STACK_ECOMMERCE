@@ -28,14 +28,14 @@ const App = () => {
 
 
 
-        <Route path="/" element={<Private/>} >
+        
 
           <Route path="/home" element={<Home />} />
           <Route path="/addp" element={<Addp />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<Admin />} />
 
-        </Route>
+        
 
 
        
