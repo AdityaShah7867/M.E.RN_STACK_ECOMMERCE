@@ -69,7 +69,7 @@ const Home = () => {
                   <img
                   src={`https://ecomm-n3fj.onrender.com/uploads/${product.file}`} // Assuming the file path is relative to your baseURL
                   alt={product.name}
-                  className="w-full h-48 object-cover mt-4"
+                  className="max-w-48 max-h-48 object-cover mt-4"
                 />
                 )}
                 {/* <button

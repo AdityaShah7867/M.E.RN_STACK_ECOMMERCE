@@ -22,18 +22,18 @@ const App = () => {
         <ToastContainer/>
         <Routes>
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/" element={<Land />} />
+        {/* <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} /> */}
+        {/* <Route path="/" element={<Land />} /> */}
 
 
 
         
 
-          <Route path="/home" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/addp" element={<Addp />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/admin" element={<Admin />} />
+          {/* <Route path="/cart" element={<Cart />} />
+          <Route path="/admin" element={<Admin />} /> */}
 
         
 
